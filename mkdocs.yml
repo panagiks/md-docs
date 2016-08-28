@@ -1,0 +1,13 @@
+site_name: RSPET
+pages:
+- Home: index.md
+- Goals : goals.md
+- Deployment : deploy.md
+- CLI Commands: cli.md
+- Plug-ins : plug_ins.md
+- Execution Model : execution_model.md
+- Code Structure : code_structure.md
+- Developing Plug-ins : dev.md
+- Contributing : contribute.md
+- FAQ : faq.md
+theme: readthedocs
