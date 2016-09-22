@@ -55,9 +55,14 @@ command's syntax. Let's see how this is done with the core command `help`:
         self.__cmd_help__["help"] = "help [command]"
 
       def help(self, server, args): #Note that all functions should take those arguments.
-        """List commands available in current state or provide syntax for a command."""
-        #Do stuff to print help
-        return None #Here you return the desired transition. None takes no "" the rest do.
+          """"List commands available in current state or provide syntax for a command."""
+          ret = [None,0,""]
+          if len(args) > 1:
+              ret[2] = ("Syntax : %s" % self.__cmd_help__["help"])
+              ret[1] = 1 #Invalid Syntax Error Code
+          else:
+              ret[2] = server.help(args)
+          return ret
 ```
 
 Let's notice a few more things on the previous example. First we see the arguments
@@ -67,7 +72,12 @@ the arguments the user provided to our command. The number and the validity of
 the arguments SHOULD be checked (for missing arguments, type miss-match etc). The
 second thing we notice is the functions docstring, when help displays a list of
 available commands to the user, it will couple your command with it's docstring
-as a description.
+as a description. Finally, notice what the function returns. All Plug-in functions
+should return an array of size 3. In the first position is the state transition
+(in this case None), in the second position we have an integer. This represents
+the Return Code of the function (see [ReturnCodes](/api/#rspet-servers-returncodes)).
+Finally, the third position contains a string. This string is what will be printed
+on the user's Console or API.
 
 ## Server Object
 

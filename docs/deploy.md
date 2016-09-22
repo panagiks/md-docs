@@ -9,4 +9,5 @@ the target machine(s).
 Parameters in `[]` are optional and in `<>` are mandatory.
 
 * `rspet_server.py [max_connections]` - Lunch the server.
+* `rspet_server_api.py` - Lunch the server with RESTful WebAPI (no Console).
 * `rspet_client.py <server_ip> [server_port]` - Lunch the client.

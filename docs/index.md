@@ -30,3 +30,5 @@ RSPET and/or developing plug-ins.
 * [Execution Model](/execution_model)
 * [Code Structure Overview](/code_structure)
 * [Developing Plug-ins](/dev)
+* [API](/api)
+* [RESTful WebAPI](/REST_API)

@@ -4,9 +4,34 @@
 
 The server module consists of three classes :
 
+* [API](#API)
 * [Console](#console)
 * [Server](#server)
 * [Host](#host)
+
+## API
+
+The API class acts mostly as an interface class for the [Server](#server) class.
+For the time being there are a couple of functions that are completely re-implemented
+in the API class but this is to be changed.
+
+Instance Attributes Table
+
+| Attribute Name | Description                          |
+| :------------- | :----------------------------------- |
+| server         | **Server**. Instance of Server class.|
+
+Class Functions Table
+
+| Function Name  | Description                           |
+| :------------- | :------------------------------------ |
+| \__init__      | Start server.                         |
+| call_plugin    | Call a Plug-in's command.             |
+| select         | Interface Server's select function.   |
+| help           | Return the entirety of RSPET's help.  |
+| refresh        | Interface Server's clean function.    |
+| get_server     | Return API's instance of the Server.  |
+| get_hosts      | Return hosts.                         |
 
 ## Console
 
@@ -57,6 +82,7 @@ Instance Attributes Table
 | hosts          | **List**. All clients currently connected to the server.   |
 | selected       | **List**. All clients selected in the current state.       |
 | plugins        | **List**. All Plug-ins currently loaded.                   |
+| log_opt        | **List**. Letters indicating logging level.                |
 | config         | **Dictionary**. Read from the config.json file.            |
 
 Class Functions Table

@@ -26,6 +26,16 @@ The state transition diagram for RSPET's server can be found bellow.
 
 ![RSPET's Server state transition diagram](https://github.com/panagiks/RSPET/blob/Beta/Server/CLI_state_diagram.png?raw=true)
 
+## API & RESTful WebAPI
+
+Since the API was initially designed to serve the RESTful WebAPI and since the
+later is by definition stateless, both the API and WebAPI are stateless. This does
+not mean that the states are not available or that the state model changes, it means
+that the states are not "active" when using either API. Despite that, state transitions
+that would normally occur are exposed through both APIs (they are returned one way
+or another). So it is up to the developer utilize either API to implement and manage
+the states.
+
 # Client Execution Model
 
 TODO

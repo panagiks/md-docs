@@ -1,7 +1,7 @@
 # Plug-ins
 
 This is a list of all officially endorsed Plug-ins. To install a plug-in, simply
-place it inside the "Plugins" folder and add its name to config.jason file.
+place it inside the "Plugins" folder and add its name to config.json file.
 
 For the 'core' plug-ins and their functions GoTo [CLI Commands](/cli)
 
