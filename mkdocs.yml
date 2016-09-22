@@ -8,6 +8,11 @@ pages:
 - Execution Model : execution_model.md
 - Code Structure : code_structure.md
 - Developing Plug-ins : dev.md
+- API : api.md
+- RESTful WebAPI : REST_API.md
 - Contributing : contribute.md
 - FAQ : faq.md
 theme: readthedocs
+markdown_extensions:
+    - smarty
+    - fenced_code
