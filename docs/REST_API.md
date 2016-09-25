@@ -2,7 +2,8 @@
 
 This guide aims to cover the usage of RSPET Server module's RESTful WebAPI. The
 API consists of GET and POST calls. It can be activated by running `rspet_server_api.py`
-instead of `rspet_server.py`.
+instead of `rspet_server.py`. In order to use the RESTful WebAPI you will need to
+install Flask first. To do that run `pip2 install Flask`.
 
 ## GET Calls
 
