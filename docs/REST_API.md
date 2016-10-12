@@ -10,8 +10,8 @@ install Flask first. To do that run `pip2 install Flask`.
 | URI | Description | Returns |
 |:-------------:|:-------------:|:-------------:|
 | `/rspet/api/v1.0/refresh` | Refresh server. Check for lost hosts | 204 |
-| `/rspet/api/v1.0/hosts`   | Return all hosts | Dictionary. Host ID is key. Unfolds to Dictionary. Keys : `'ip'`, `'port'`, `'version'`, `'type'` |
-| `/rspet/api/v1.0/hosts/<string:host_id>` | Return specific host | Dictionary. Keys : `'ip'`, `'port'`, `'type'`, `'uri'`, `'version'` |
+| `/rspet/api/v1.0/hosts`   | Return all hosts | Dictionary. Host ID is key. Unfolds to Dictionary. Keys : `'ip'`, `'port'`, `'version'`, `'type'`, `'hostname'`, `'OS'` |
+| `/rspet/api/v1.0/hosts/<string:host_id>` | Return specific host | Dictionary. Keys : `'ip'`, `'port'`, `'type'`, `'uri'`, `'version'`, `'hostname'`, `'OS'` |
 | `/rspet/api/v1.0/help` | Return general help | Dictionary. Command is key. Unfolds to Dictionary. Keys : `'help'`, `'states'`, `'syntax'`, `'uri'`|
 | `/rspet/api/v1.0/help/<string:command>` | Return command specific help | Dictionary. Keys : `'help'`, `'states'`,  `'syntax'`, `;uri` |
 | `/rspet/api/v1.0` | Sitemapish | Array. Unfolds to Dictionary. Keys : `'doc'`, `'methods'`, `'uri'` |
