@@ -18,9 +18,9 @@ a result equal to lunching RSPET's Server directly from a command line.
 
 | Function     | Description  | Arguments    | Returns      |
 |:------------:|:------------:|:------------:|:------------:|
-| __init__     | Called during instance creation | - | Raises socket.error if there is an error during binding|
+| __init__     | Called during instance creation | max_conns(int), ip(string), port(int) | Raises socket.error if there is an error during binding|
 | call_plugin  | Call a command defined in a plug-in | command(string), args(array) | Dictionary. Keys : `'transition'`, `'code'`, `'sting'` |
-| select       | Manage host selection | hosts(array) | Dictionary, contains transition, code and sting |
+| select       | Manage host selection | hosts(array) | Dictionary. Keys : `'transition'`, `'code'` and `'sting'` |
 | help         | Return all available Commands, their syntax and their documentation | - | Dictionary. Command is Key. Unfolds to Dictionary. Keys : `'help'`, `'syntax'`, `'states'` |
 | refresh      | Interfaces Server's clean function. Checks for lost hosts. | - | - |
 | get_server   | Return the API's instance of Serve. Used for lower level interaction. | - | Instance of Server class |
@@ -32,8 +32,8 @@ RSPET's Server module has a class containing the Return codes that command execu
 can result in. They are accessible under rspet_server.ReturnCodes.<CodeName>. The
 Return Codes currently available are the following.
 
-| Code Name     | Value (Int)   |
-|:-------------:|:-------------:|
+| Code Name         | Value (Int)   |
+|:-----------------:|:-------------:|
 | OK                | 0             |
 | InvalidSyntax     | 1             |
 | SocketError       | 2             |
@@ -51,7 +51,7 @@ directory as `rspet_server.py` (let's call it `api_test.py`).
 ```py
     import rspet_server
 
-    rspet_api = rspet_server.API()
+    rspet_api = rspet_server.API(5, "0.0.0.0", 9000)
     output = rspet_api.call_plugin("help")
     state_transition = output['transition']
     return_code = output['code']
@@ -72,4 +72,26 @@ Executing the above code will give us the following output.
     Choose_Host: Select a single host.
     List_Hosts: List all connected hosts.
     Select: Select multiple hosts.
+```
+Now let's try calling a command that has not been defined (i.e. make a typo).
+
+```py
+    import rspet_server
+
+    rspet_api = rspet_server.API(5, "0.0.0.0", 9000)
+    output = rspet_api.call_plugin("hilp")
+    state_transition = output['transition']
+    return_code = output['code']
+    return_string = output['string']
+    if return_code != rspet_server.ReturnCodes.OK:
+      print ("Ooops. I've got an error. It says :\n%s" %return_string)
+    else:
+      print return_string
+```
+
+Executing the above will return the following.
+
+```
+    Ooops. I've got an error. It says :
+    hilp : No such command.
 ```

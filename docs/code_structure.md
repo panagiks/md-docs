@@ -32,6 +32,7 @@ Class Functions Table
 | refresh        | Interface Server's clean function.    |
 | get_server     | Return API's instance of the Server.  |
 | get_hosts      | Return hosts.                         |
+| quit           | Interface Server's trash function.    |
 
 ## Console
 
@@ -40,12 +41,12 @@ as an interface between the user and the Server class.
 
 Class Attributes Table
 
-| Attribute Name | Description                                                                                    |
-| :------------- | :--------------------------------------------------------------------------------------------- |
-| prompt         | **String**. The command prompt displayed to the user.                                          |
+| Attribute Name | Description                                                                        |
+| :------------- | :--------------------------------------------------------------------------------- |
+| prompt         | **String**. The command prompt displayed to the user.                              |
 | states         | **Dictionary**. Matching state transition strings to the functions carrying out the transition.|
-| state          | **String**. The state module's CLI is currently in.                                            |
-| quit_signal    | **Boolean**. The signal to quit the CLI (and the module itself).                               |
+| state          | **String**. The state module's CLI is currently in.                                |
+| quit_signal    | **Boolean**. The signal to quit the CLI (and the module itself).                   |
 
 Instance Attributes Table
 
@@ -78,12 +79,14 @@ Instance Attributes Table
 | :------------- | :--------------------------------------------------------- |
 | ip             | **String**. The IP Address provided to the module's socket.|
 | port           | **String**. The port provided to the module's socket.      |
+| max_conns      | **Integer**. Max simultaneous connections.                 |
 | sock           | **Socket**. The module's socket.                           |
-| hosts          | **List**. All clients currently connected to the server.   |
+| serial         | **Integer**. Used to assign serialized IDs to clients.     |
+| quit_signal    | **Boolean**. Used to determine when to quit the Server.    |
+| hosts          | **Dictionary**. All clients connected to the server.       |
 | selected       | **List**. All clients selected in the current state.       |
 | plugins        | **List**. All Plug-ins currently loaded.                   |
 | log_opt        | **List**. Letters indicating logging level.                |
-| config         | **Dictionary**. Read from the config.json file.            |
 
 Class Functions Table
 
@@ -113,14 +116,17 @@ Class Attributes Table
 
 Instance Attributes Table
 
-| Attribute Name | Description                                              |
-| :------------- | :------------------------------------------------------- |
-| deleteme       | **Boolean**. Flag marking Instance for deletion.         |
-| sock           | **Socket**. The socket the client is bound to.           |
-| ip             | **String**. Client's IP Address.                         |
-| port           | **String**. Client's port.                               |
-| version        | **String**. Version of the RSPET module runing on client.|
-| type           | **String**. Type of the RSPET module runing on client.   |
+| Attribute Name | Description                                               |
+| :------------- | :-------------------------------------------------------- |
+| deleteme       | **Boolean**. Flag marking Instance for deletion.          |
+| sock           | **Socket**. The socket the client is bound to.            |
+| ip             | **String**. Client's IP Address.                          |
+| port           | **String**. Client's port.                                |
+| id             | **Integer**. A serialized ID.                             |
+| version        | **String**. Version of the RSPET module running on client.|
+| type           | **String**. Type of the RSPET module running on client.   |
+| systemtype     | **String**. Client's OS info.                             |
+| hostname       | **String**. Client's hostname.                            |
 
 Class Functions Table
 
@@ -132,8 +138,8 @@ Class Functions Table
 | \__eq__        | Check weather two sockets are the same socket. |
 | send           | Send message to client.                        |
 | recv           | Receive message from client.                   |
-| _enc           | Obfuscate message (before sending).            |
-| _dec           | Deobfuscate message (after receiving).         |
+| ~~_enc~~       | ~~Obfuscate message (before sending).~~        |
+| ~~_dec~~       | ~~Deobfuscate message (after receiving).~~     |
 
 ## RSPET's Client Module
 
