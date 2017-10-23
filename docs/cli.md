@@ -25,6 +25,9 @@ developers.
 | List_Sel_Hosts | List selected hosts. | List_Sel_Hosts | "connected", "multiple" | None |
 | Exit | Unselect all hosts. | Exit | "connected", "multiple" | "basic" |
 | KILL | Stop client(s) from doing the current task. | KILL | "connected", "multiple" | None |
+| create_client_profile | Creates a profile to deploy plugins to clients. | create_client_profile <profile_name> <plugin> [plugin] | "basic", "connected", "multiple" | None |
+| list_client_profile | List client profiles. | list_client_profile | "basic", "connected", "multiple" | None |
+| apply_client_profile | Deploys a profile to selected clients. | apply_client_profile | "connected", "multiple" | None |
 
 ## files
 
