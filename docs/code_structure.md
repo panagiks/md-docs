@@ -46,7 +46,6 @@ Class Attributes Table
 | prompt         | **String**. The command prompt displayed to the user.                              |
 | states         | **Dictionary**. Matching state transition strings to the functions carrying out the transition.|
 | state          | **String**. The state module's CLI is currently in.                                |
-| quit_signal    | **Boolean**. The signal to quit the CLI (and the module itself).                   |
 
 Instance Attributes Table
 
@@ -77,16 +76,38 @@ Instance Attributes Table
 
 | Attribute Name | Description                                                |
 | :------------- | :--------------------------------------------------------- |
-| ip             | **String**. The IP Address provided to the module's socket.|
-| port           | **String**. The port provided to the module's socket.      |
-| max_conns      | **Integer**. Max simultaneous connections.                 |
-| sock           | **Socket**. The module's socket.                           |
-| serial         | **Integer**. Used to assign serialized IDs to clients.     |
+| connection     | **Dictionary**. See [Connection](#Connection).             |
+| commands       | **Dictionary**. Populated by plugins. Is the command switch. |
+| clients        | **Dictionary**. See [Clients](#Clients).                   |
+| plugins        | **Dictionary**. See [Plugins](#Plugins).                   |
+| config         | **Dictionary**. Contains the contets of config.json        |
 | quit_signal    | **Boolean**. Used to determine when to quit the Server.    |
-| hosts          | **Dictionary**. All clients connected to the server.       |
-| selected       | **List**. All clients selected in the current state.       |
-| plugins        | **List**. All Plug-ins currently loaded.                   |
-| log_opt        | **List**. Letters indicating logging level.                |
+
+### Connection
+
+| Key Name | Description                                                |
+| :------- | :--------------------------------------------------------- |
+| ip       | **String**. The IP address the server listens on.          |
+| port     | **String**. The port the server listens on.                |
+| max_conns | **Integer**. The number of connections the server accepts. |
+| sock     | **Socket**. The socket that the server listens on.         |
+
+### Clients
+
+| Key Name | Description                                                |
+| :------- | :--------------------------------------------------------- |
+| hosts    | **Dictionary**. Keys are host IDs. Values are Host instances. |
+| selected | **Array**. The IDs of selected hosts.                      |
+| serial   | **Integer**. Used to assign serialized IDs to clients.     |
+
+### Plugins
+
+| Key Name | Description                                                |
+| :------- | :--------------------------------------------------------- |
+| loaded   | **Dictionary**. Keys are plugin names. Values are plugin docstings. |
+| installed | **Dictionary**. Keys are plugin names. Values are plugin docstings.|
+| available | **Dictionary**. Keys are plugin names. Values are dictionaries. |
+| base_url | **Array**. Base urls for plugin repos.                     |
 
 Class Functions Table
 
@@ -96,6 +117,12 @@ Class Functions Table
 | trash          | Safely closes all sockets.                                                           |
 | _log           | Log event to file.                                                                   |
 | loop           | Main server loop for accepting connections. Execute on separate thread.              |
+| setup_command  | Hook function called by plugins to register their commands.                          |
+| load_plugin    | Asyncronously load a plugin.                                                         |
+| install_plugin | Install a plugin from a loaded repo.                                                 |
+| available_plugins | Get a list of all available plugins.                                              |
+| installed_plugins | List all plugins installed.                                                       |
+| loaded_plugins | Interface function. Return loaded plugins.                                           |
 | select         | Selects given host(s) based on ids.                                                  |
 | get_selected   | Interface function. Return selected hosts.                                           |
 | get_hosts      | Interface function. Return all hosts.                                                |
@@ -138,8 +165,6 @@ Class Functions Table
 | \__eq__        | Check weather two sockets are the same socket. |
 | send           | Send message to client.                        |
 | recv           | Receive message from client.                   |
-| ~~_enc~~       | ~~Obfuscate message (before sending).~~        |
-| ~~_dec~~       | ~~Deobfuscate message (after receiving).~~     |
 
 ## RSPET's Client Module
 

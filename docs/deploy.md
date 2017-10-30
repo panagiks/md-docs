@@ -6,32 +6,33 @@ the target machine(s).
 
 ## Installation
 
-Executing `./setup.py` while on the project's root folder will generate the required certificates and install
-all needed components through pip.
+ If you are using a distribution that has a package for RSPET (i.e. BlackArch or ArchStrike) prefer using the distribution's
+ package manager to install RSPET.
 
-Of course you can manually install the pip packages required by executing pip2 install Flask flask-cors. Also
-you can generate your own key-cert set (just name them server.key & server.crt and place them inside the Server
-folder).
+ If you are in a distribution that doesn't have a package available you can run the following:
+ * `pip install --user rspet-server[rest]`
+ * `sudo env "PATH=$PATH" rspet-server-setup`
+
+This should take care of all the dependencies.
 
 ## Execution
 
 Parameters in `[]` are optional and in `<>` are mandatory.
 
-* `rspet_server.py [-c #clients, --ip ipToBind, -p portToBind]` - Lunch the server.
-* `rspet_server_api.py [-c #clients, --ip ipToBind, -p portToBind]` - Lunch the server with RESTful WebAPI (no Console).
+* `rspet-server [-c #clients, --ip ipToBind, -p portToBind]` - Lunch the server.
+* `rspet-server-rest [-c #clients, --ip ipToBind, -p portToBind]` - Lunch the server with RESTful WebAPI (no Console).
 * `rspet_client.py <server_ip> [server_port]` - Lunch the client.
 
-## Development Deployment
+## Server Configuration
 
-Additionally, RSPET provides a Deployment Tool to assist in Development and Testing.
-In order to setup the Testing environment and lunch the preferred version along
-with a few instances of the client run the following from RSPET's root folder:
+RSPET's server module in configured through `/etc/rspet/config.json`
 
-* `run_dev.py  [-c #clients, --ip ipToBind, -p portToBind, --rest]`
+Options:
+* `"plugins"` - An array of plugin names, if installed will be loaded on server start, if not server will try to install and load them.
+* `"log"` - An array (with only one element), sets the lower priority for logging.
+* `"plugin_base_url"` - An array of base urls for plugin repos.
+* `"certs"` (optional) - A Dictionary with `"crt"` and `"key"` keys provide it to use custom certificates for TLS encryption, if ommited RSPET server will build its own set on its first execution.
 
-In order for the built-in cleanup methods to work correctly, either version of
-the server has to be terminated correctly (Either provide `Quit` to the CLI or
-make a GET request at /rspet/api/v1.0/quit).
-If for any reason the cleanup methods were omitted (The server was forcefully
-terminated or the Development Deployment script crashed), manually remove the
-`test/` directory.
+## Logging
+
+Logs for RSPET server's execution are stored in `/var/log/rspet/log.txt`.

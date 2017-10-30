@@ -15,16 +15,16 @@ developers.
 |Command       |Description   |Syntax        |State(s)      |Transition    |
 |:------------:|:------------:|:------------:|:------------:|:------------:|
 | help | List commands available in current state or provide syntax for a command.| help [command] | "basic", "connected", "selected" | None |
-| Choose_Host | Select a single host. | Choose_Host <host ID\> | "basic" | "connected" |
-| Select | Select multiple hosts. | Select <host ID [host Id] [host ID] ...\> | "basic" | "multiple" |
-| ALL | Select all hosts. | ALL | "basic" | "all" |
-| Quit | Quit the CLI and terminate the server. | Quit | "basic" | None |
-| Execute | Execute system command on client. | Execute <command\> | "connected", "multiple" | None |
-| Close_Connection | Kick the selected Client(s). | Close_Connection | "connected", "multiple" | "basic" |
-| List_Hosts | List all connected hosts. | List_Hosts | "basic" | None |
-| List_Sel_Hosts | List selected hosts. | List_Sel_Hosts | "connected", "multiple" | None |
-| Exit | Unselect all hosts. | Exit | "connected", "multiple" | "basic" |
-| KILL | Stop client(s) from doing the current task. | KILL | "connected", "multiple" | None |
+| choose_host | Select a single host. | choose_host <host ID\> | "basic" | "connected" |
+| select | Select multiple hosts. | select <host ID [host Id] [host ID] ...\> | "basic" | "multiple" |
+| all | Select all hosts. | all | "basic" | "all" |
+| quit | Quit the CLI and terminate the server. | quit | "basic" | None |
+| execute | Execute system command on client. | execute <command\> | "connected", "multiple" | None |
+| close_connection | Kick the selected Client(s). | close_connection | "connected", "multiple" | "basic" |
+| list_hosts | List all connected hosts. | list_hosts | "basic" | None |
+| list_sel_hosts | List selected hosts. | list_sel_hosts | "connected", "multiple" | None |
+| exit | Unselect all hosts. | exit | "connected", "multiple" | "basic" |
+| kill | Stop client(s) from doing the current task. | kill | "connected", "multiple" | None |
 | create_client_profile | Creates a profile to deploy plugins to clients. | create_client_profile <profile_name> <plugin> [plugin] | "basic", "connected", "multiple" | None |
 | list_client_profile | List client profiles. | list_client_profile | "basic", "connected", "multiple" | None |
 | apply_client_profile | Deploys a profile to selected clients. | apply_client_profile | "connected", "multiple" | None |
@@ -33,14 +33,14 @@ developers.
 
 |Command       |Description   |Syntax        |State(s)      |Transition    |
 |:------------:|:------------:|:------------:|:------------:|:------------:|
-| Pull_File | Pull a regular text file from the client. | Pull_File <remote_file\> [local_file] | "connected" | None |
-| Pull_Binary | Pull a binary file from the client. | Pull_Binary <remote_bin\> [local_bin] | "connected" | None |
-| Make_File | Send a regular text file to the host(s). | Make_File <local_file\> [remote_file] | "connected", "multiple" | None |
-| Make_Binary | Send a binary file to the host(s). | Make_Binary <local_bin\> [remote_bin] | "connected", "multiple" | None |
+| pull_file | Pull a regular text file from the client. | pull_file <remote_file\> [local_file] | "connected" | None |
+| pull_binary | Pull a binary file from the client. | pull_binary <remote_bin\> [local_bin] | "connected" | None |
+| make_file | Send a regular text file to the host(s). | make_file <local_file\> [remote_file] | "connected", "multiple" | None |
+| make_binary | Send a binary file to the host(s). | make_binary <local_bin\> [remote_bin] | "connected", "multiple" | None |
 
 ## udp
 
 |Command       |Description   |Syntax        |State(s)      |Transition    |
 |:------------:|:------------:|:------------:|:------------:|:------------:|
-| UDP_Flood | Flood target machine with UDP packets. | UDP_Flood <target_ip\> <target_port\> [payload] | "connected", "multiple" | None |
-| UDP_Spoof | Flood target machine with UDP packets via spoofed ip & port. | UDP_Spoof <traget_ip\> <target_port\> <spoofed_ip\> <spoofed_port\> [payload] | "connected", "multiple" | None |
+| udp_flood | Flood target machine with UDP packets. | udp_flood <target_ip\> <target_port\> [payload] | "connected", "multiple" | None |
+| udp_spoof | Flood target machine with UDP packets via spoofed ip & port. | udp_spoof <traget_ip\> <target_port\> <spoofed_ip\> <spoofed_port\> [payload] | "connected", "multiple" | None |
